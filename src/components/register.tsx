@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "../context/AuthContext";
 
 interface RegisterFormValues {
   name: string;
@@ -21,6 +22,7 @@ const RegistrationSchema = Yup.object().shape({
 });
 const Register = () => {
   const router = useRouter();
+  const { register } = useContext(AuthContext);
   const initialRegisterValues: RegisterFormValues = {
     name: "",
     email: "",
@@ -31,14 +33,8 @@ const Register = () => {
     values: RegisterFormValues,
     { setSubmitting }: FormikHelpers<RegisterFormValues>
   ) => {
-    try {
-      await axios.post("http://localhost:5000/register", values);
-      setSubmitting(false);
-      router.push("/");
-    } catch (error) {
-      console.error("Error registering user:", error);
-      setSubmitting(false);
-    }
+    await register(values);
+    setSubmitting(false);
   };
 
   return (

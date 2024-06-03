@@ -6,7 +6,7 @@ import Login from "@/components/login";
 import Register from "@/components/register";
 
 const LandingPage = () => {
-  const [isRegister, setIsRegister] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
 
   return (
     <div
@@ -15,15 +15,15 @@ const LandingPage = () => {
     >
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6">
-          {isRegister ? "Register" : "Login"}
+          {isRegistering ? "Register" : "Login"}
         </h2>
-        {isRegister ? <Register /> : <Login />}
+        {isRegistering ? <Register /> : <Login />}
         <div className="mt-4 text-center">
           <button
-            onClick={() => setIsRegister(!isRegister)}
+            onClick={() => setIsRegistering(!isRegistering)}
             className="text-blue-500 underline"
           >
-            {isRegister
+            {isRegistering
               ? "Already have an account? Login"
               : "Don't have an account? Register"}
           </button>

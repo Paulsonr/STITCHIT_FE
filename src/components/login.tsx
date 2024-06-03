@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "../context/AuthContext";
 interface LoginFormValues {
   email: string;
   password: string;
@@ -17,6 +18,7 @@ const LoginSchema = Yup.object().shape({
 
 const Login = () => {
   const router = useRouter();
+  const { login } = useContext(AuthContext);
   const initialLoginValues: LoginFormValues = {
     email: "",
     password: "",
@@ -26,14 +28,9 @@ const Login = () => {
     values: LoginFormValues,
     { setSubmitting }: FormikHelpers<LoginFormValues>
   ) => {
-    try {
-      await axios.post("http://localhost:5000/login", values);
-      setSubmitting(false);
-      router.push("/");
-    } catch (error) {
-      console.error("Error logging in user:", error);
-      setSubmitting(false);
-    }
+    console.log("tsx >> login");
+    await login(values.email, values.password);
+    setSubmitting(false);
   };
 
   return (
