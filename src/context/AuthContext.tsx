@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -30,7 +30,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     const checkUserLoggedIn = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/api/auth/user");
+        const response = await fetch("http://localhost:5000/api/auth/user");
+        const data = await response.json();
         setUser(data.user);
         setLoading(false);
       } catch (error) {
@@ -73,4 +74,3 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-// export const useAuth = () => useContext(AuthContext);

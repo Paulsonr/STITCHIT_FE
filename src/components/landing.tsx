@@ -10,8 +10,9 @@ const LandingPage = () => {
 
   return (
     <div
-      className="flex items-center justify-center bg-white-100"
-      style={{ height: "inherit" }}
+
+      className="flex items-center justify-center bg-gradient-to-b from-gray-50 to-gray-950 absolute left-3/10 inset-0 -z-10"
+      // style={{ height: "inherit" }}
     >
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6">

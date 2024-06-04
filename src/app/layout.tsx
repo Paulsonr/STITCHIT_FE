@@ -15,13 +15,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>StitchIT</title>
       </Head>
-      <body>
-        <main className="bg-gradient-to-b from-gray-50 to-gray-950">
+      <body >
+        <main>
           <Navbar
             isLoggedIn={false}
             // profileImageUrl={"/images/icons/logo-color.png"}
           />
           <div>{children}</div>
+
         </main>
       </body>
     </html>
